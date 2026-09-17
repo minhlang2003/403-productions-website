@@ -1,9 +1,3 @@
-'use client'
-
-import dynamic from 'next/dynamic'
-
-const SanityStudio = dynamic(() => import('@/components/sanity-studio'), {ssr: false})
-
 export default function StudioPage() {
   if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
     return <main className="studio-setup">
@@ -18,5 +12,10 @@ export default function StudioPage() {
     </main>
   }
 
-  return <SanityStudio />
+  return <main className="studio-setup">
+    <p>403 PRODUCTIONS / CMS</p>
+    <h1>CMS đang chạy độc lập để ổn định và nhanh hơn.</h1>
+    <p>Trong một terminal khác, chạy <code>npm run studio</code>, sau đó mở địa chỉ bên dưới.</p>
+    <a className="studio-open" href="http://127.0.0.1:3333">Mở 403 Productions CMS ↗</a>
+  </main>
 }
