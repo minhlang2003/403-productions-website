@@ -1,0 +1,9 @@
+import {defineArrayMember, defineField, defineType} from 'sanity'
+export const siteSettings = defineType({name:'siteSettings',title:'Website settings',type:'document',fields:[
+  defineField({name:'brand',type:'string'}),defineField({name:'brandDescriptor',type:'string'}),defineField({name:'navMeta',type:'localizedString'}),defineField({name:'tagline',type:'localizedString'}),defineField({name:'supportingLine',type:'localizedString'}),defineField({name:'positioning',type:'localizedString'}),
+  defineField({name:'navigation',type:'array',of:[defineArrayMember({type:'object',fields:[defineField({name:'label',type:'localizedString'}),defineField({name:'href',type:'string'})]})]}),
+  defineField({name:'home',title:'Homepage labels',type:'object',fields:[defineField({name:'productionHouse',type:'localizedString'}),defineField({name:'viewProjects',type:'localizedString'}),defineField({name:'aboutLink',type:'localizedString'}),defineField({name:'featuredLabel',type:'localizedString'}),defineField({name:'featuredHeading',type:'localizedString'}),defineField({name:'capabilitiesLabel',type:'localizedString'}),defineField({name:'capabilitiesHeading',type:'localizedString'})]}),
+  defineField({name:'about',type:'object',fields:[defineField({name:'label',type:'localizedString'}),defineField({name:'statement',type:'localizedString'}),defineField({name:'footnote',type:'localizedString'})]}),
+  defineField({name:'services',type:'array',of:[defineArrayMember({type:'object',fields:[defineField({name:'title',type:'localizedString'}),defineField({name:'description',type:'localizedString'})]})]}),
+  defineField({name:'contact',type:'object',fields:[defineField({name:'eyebrow',type:'localizedString'}),defineField({name:'heading',type:'localizedString'}),defineField({name:'email',type:'string'})]}),
+]})
