@@ -6,21 +6,24 @@ import {useEffect, useRef, useState} from 'react'
 export function MotionSystem() {
   const pathname = usePathname()
   const router = useRouter()
+  const isStudio = pathname.startsWith('/studio')
   const [phase, setPhase] = useState<'entering' | 'idle' | 'leaving'>('entering')
   const cursorRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef<HTMLElement>(null)
   const navigatingRef = useRef(false)
 
   useEffect(() => {
+    if (isStudio) { setPhase('idle'); return }
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduced) { setPhase('idle'); return }
     setPhase('entering')
     navigatingRef.current = false
     const timer = window.setTimeout(() => setPhase('idle'), 780)
     return () => window.clearTimeout(timer)
-  }, [pathname])
+  }, [pathname, isStudio])
 
   useEffect(() => {
+    if (isStudio) return
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const finePointer = window.matchMedia('(pointer: fine)').matches
     const cleanups: Array<() => void> = []
@@ -88,7 +91,9 @@ export function MotionSystem() {
     document.addEventListener('click',navigate,true)
     cleanups.push(()=>document.removeEventListener('click',navigate,true))
     return () => cleanups.forEach(cleanup=>cleanup())
-  }, [pathname,router])
+  }, [pathname,router,isStudio])
+
+  if (isStudio) return null
 
   return <>
     <div className={`motion-layer ${phase==='entering'?'is-entering':phase==='leaving'?'is-leaving':''}`} aria-hidden="true"><span className="transition-line line-a"/><span className="transition-line line-b"/><span className="transition-line line-c"/><span className="transition-line line-d"/><strong>403</strong></div>
