@@ -2,11 +2,13 @@
 
 import Link from 'next/link'
 import type {FooterContent, NavigationItem} from '@/lib/content/types'
+import {FooterCameraField} from '@/components/footer-camera-field'
 
 type Language = 'vi' | 'en'
 
 export function SiteFooter({brand, descriptor, email, navigation, footer, language}: {brand: string; descriptor: string; email: string; navigation: NavigationItem[]; footer: FooterContent; language: Language}) {
   return <footer className="site-footer">
+    <FooterCameraField />
     <div className="site-footer-grid">
       <div className="site-footer-identity"><Link className="site-footer-brand" href="/" aria-label={brand}><span>{brand.split(' ')[0]}</span><small>{descriptor}</small></Link><p>{footer.availability[language]}</p></div>
       <div><span>{language === 'vi' ? 'Khám phá' : 'Explore'}</span>{navigation.map(item => <Link key={item.href} href={item.href}>{item.label[language]}</Link>)}</div>

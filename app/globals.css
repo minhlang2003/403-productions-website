@@ -54,6 +54,7 @@
 /* Global footer */
 .site-footer { position:relative; overflow:hidden; display:block; padding:34px 3vw 22px; background:var(--white); color:var(--navy); }
 .site-footer::before { display:none; }
+.footer-camera-field { position:absolute; inset:0; z-index:0; width:100%; height:100%; pointer-events:none; }
 .site-footer-grid,.site-footer-bottom { position:relative; z-index:1; }
 .site-footer-brand { display:flex; align-items:flex-start; gap:12px; font-family:var(--font-display); }
 .site-footer-brand span { font-size:clamp(3rem,5vw,5rem); line-height:.7; letter-spacing:-.1em; font-weight:700; }
