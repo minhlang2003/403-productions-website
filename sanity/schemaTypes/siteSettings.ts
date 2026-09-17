@@ -8,6 +8,7 @@ export const siteSettings=defineType({name:'siteSettings',title:'Website setting
   defineField({name:'about',title:'Homepage introduction',type:'object',fields:[localized('label'),localized('statement'),localized('footnote')]}),
   defineField({name:'services',type:'array',of:[defineArrayMember({type:'object',fields:[localized('title'),localized('description')]})]}),
   defineField({name:'contact',title:'Global contact',type:'object',fields:[localized('eyebrow'),localized('heading'),defineField({name:'email',type:'string'})]}),
+  defineField({name:'footer',title:'Global footer',type:'object',fields:[localized('availability'),localized('address'),localized('followLabel'),defineField({name:'socialLinks',title:'Social links',type:'array',of:[defineArrayMember({type:'object',fields:[defineField({name:'label',type:'string'}),defineField({name:'href',title:'URL',type:'url'})]})]}),localized('copyright'),localized('topLabel')]}),
   defineField({name:'pages',title:'Inner pages',type:'object',fields:[
     defineField({name:'work',title:'Work page',type:'object',fields:[localized('meta'),localized('kicker'),localized('heading'),localizedList('filters'),localized('nextLabel'),localized('nextLink')]}),
     defineField({name:'films',title:'Films page',type:'object',fields:[localized('meta'),localized('kicker'),localized('subKicker'),localized('heading'),localized('intro'),localized('projectGenre'),localized('ctaLabel'),localized('ctaLink')]}),

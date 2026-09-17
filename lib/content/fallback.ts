@@ -33,6 +33,18 @@ export const fallbackContent: SiteContent = {
     {title: {vi: 'Hậu kỳ', en: 'Post Production'}, description: {vi: 'Dựng phim / Màu sắc / Âm thanh', en: 'Editing / Color / Sound'}},
   ],
   contact: {eyebrow: {vi: 'Bắt đầu dự án', en: 'Start a project'}, heading: {vi: 'Hãy cùng tạo nên một điều gì đó.', en: "Let's make something."}, email: '403productions.contact@gmail.com'},
+  footer: {
+    availability: {vi: 'Nhận dự án mới', en: 'Available for new projects'},
+    address: {vi: 'Thành phố Hồ Chí Minh, Việt Nam', en: 'Ho Chi Minh City, Vietnam'},
+    followLabel: {vi: 'Theo dõi chúng tôi', en: 'Follow us'},
+    socialLinks: [
+      {label: 'Instagram', href: 'https://instagram.com'},
+      {label: 'Facebook', href: 'https://facebook.com'},
+      {label: 'YouTube', href: 'https://youtube.com'},
+    ],
+    copyright: {vi: '© 2026 403 PRODUCTIONS. BẢO LƯU MỌI QUYỀN.', en: '© 2026 403 PRODUCTIONS. ALL RIGHTS RESERVED.'},
+    topLabel: {vi: 'Lên đầu trang', en: 'Back to top'},
+  },
   pages: {
     work:{meta:{vi:'DỰ ÁN TIÊU BIỂU / 02',en:'SELECTED WORK / 02'},kicker:{vi:'Dự án tuyển chọn',en:'Selected projects'},heading:{vi:'Những tác phẩm còn đọng lại.',en:'Work that stays with you.'},filters:[{vi:'Tất cả',en:'All'},{vi:'Phim truyện',en:'Narrative Film'},{vi:'Quảng cáo',en:'Commercial'},{vi:'Music Video',en:'Music Video'},{vi:'Nhiếp ảnh',en:'Photography'}],nextLabel:{vi:'Tiếp theo / Phim',en:'Next / Films'},nextLink:{vi:'403 Films',en:'403 Films'}},
     films:{meta:{vi:'PHIM NGUYÊN BẢN / 02',en:'ORIGINAL FILMS / 02'},kicker:{vi:'403 Films',en:'403 Films'},subKicker:{vi:'Tác phẩm nguyên bản',en:'Original IP'},heading:{vi:'Những câu chuyện nguyên bản của 403.',en:'Original stories by 403.'},intro:{vi:'Nơi phát triển phim truyện và tác phẩm nguyên bản của 403 Productions.',en:'A home for narrative films and original intellectual property developed by 403 Productions.'},projectGenre:{vi:'Tâm lý / Hành động',en:'Psychological / Action'},ctaLabel:{vi:'Phim nổi bật',en:'Featured film'},ctaLink:{vi:'Đi vào Giao Điểm',en:'Enter Crossroads'}},

@@ -1,5 +1,13 @@
 export type Localized = {vi: string; en: string}
 export type NavigationItem = {label: Localized; href: string}
+export type FooterContent = {
+  availability: Localized
+  address: Localized
+  followLabel: Localized
+  socialLinks: Array<{label: string; href: string}>
+  copyright: Localized
+  topLabel: Localized
+}
 export type Project = {title: string; subtitle?: string; slug: string; year: number; category: Localized; tagline?: Localized; featured: boolean}
 export type SiteContent = {
   brand: string
@@ -21,6 +29,7 @@ export type SiteContent = {
   about: {label: Localized; statement: Localized; footnote: Localized}
   services: Array<{title: Localized; description: Localized}>
   contact: {eyebrow: Localized; heading: Localized; email: string}
+  footer: FooterContent
   pages: {
     work: {meta:Localized;kicker:Localized;heading:Localized;filters:Localized[];nextLabel:Localized;nextLink:Localized}
     films: {meta:Localized;kicker:Localized;subKicker:Localized;heading:Localized;intro:Localized;projectGenre:Localized;ctaLabel:Localized;ctaLink:Localized}

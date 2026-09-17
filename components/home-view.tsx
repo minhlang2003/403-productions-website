@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import {useEffect, useState} from 'react'
 import type {SiteContent} from '@/lib/content/types'
+import {SiteFooter} from '@/components/site-footer'
 
 type Language = 'vi' | 'en'
 
@@ -52,6 +53,7 @@ export function HomeView({content}: {content: SiteContent}) {
         <div className="section-label">04 / {content.contact.eyebrow[language]}</div>
         <a className="contact-link" href={`mailto:${content.contact.email}`}><strong>{content.contact.heading[language]}</strong><i>↗</i></a>
       </section>
+      <SiteFooter brand={content.brand} descriptor={content.brandDescriptor} email={content.contact.email} navigation={content.navigation} footer={content.footer} language={language}/>
     </main>
   </div>
 }
