@@ -27,6 +27,10 @@ button { font: inherit; }
 .brand small { font-size: 8px; line-height: .95; letter-spacing: .13em; }
 .nav-meta { font-size: 10px; letter-spacing: .18em; text-align: center; color: var(--mist); }
 .nav nav { display: flex; justify-content: flex-end; gap: 32px; font-size: 12px; text-transform: uppercase; letter-spacing: .12em; }
+.lang-toggle { border: 1px solid rgba(255,255,255,.45); background: transparent; color: inherit; border-radius: 999px; min-width: 42px; height: 25px; padding: 0 10px; cursor: pointer; font-size: 9px; font-weight: 600; letter-spacing: .12em; transition: background .25s, color .25s, border-color .25s; }
+.lang-toggle:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
+.nav-dark .lang-toggle { border-color: rgba(0,11,87,.45); }
+.mobile-lang { margin-top: 40px; width: 72px; min-height: 42px; font-size: 12px; }
 .nav nav a { position: relative; }
 .nav nav a::after { content: ""; position: absolute; width: 0; left: 0; bottom: -7px; height: 2px; background: var(--red); transition: width .25s; }
 .nav nav a:hover::after { width: 100%; }
