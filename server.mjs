@@ -15,6 +15,7 @@ createServer((request, response) => {
   const requestPath = decodeURIComponent(request.url?.split("?")[0] || "/");
   const relativePath = requestPath === "/" ? "index.html" : requestPath.replace(/^\/+/, "");
   let filePath = normalize(join(root, relativePath));
+  if (relativePath === "films/crossroads") filePath = normalize(join(root, "crossroads.html"));
   if (!existsSync(filePath) && !extname(filePath) && existsSync(`${filePath}.html`)) {
     filePath = `${filePath}.html`;
   }

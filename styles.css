@@ -1,10 +1,10 @@
 :root {
   --red: #fe1413;
-  --blue: #00139e;
-  --navy: #000b57;
-  --mist: #a3b5cb;
-  --white: #ffffff;
-  --black: #030617;
+  --blue: #24272d;
+  --navy: #111216;
+  --mist: #9ea3aa;
+  --white: #f5f4ef;
+  --black: #090a0c;
   --font-display: "Manrope", sans-serif;
   --font-body: "DM Sans", sans-serif;
 }
@@ -321,3 +321,37 @@ footer p { margin: 0; text-transform: uppercase; font-size: 8px; letter-spacing:
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* Brief-aligned cinematic system */
+.orb { display: none; }
+.hero { background: #090a0c; }
+.hero-visual { background: radial-gradient(circle at 70% 35%, #42464c 0, #1b1d21 18%, #090a0c 53%); }
+.film-frame { background: linear-gradient(145deg, rgba(255,255,255,.12), transparent 46%), linear-gradient(160deg,#303338,#0a0b0e); filter: grayscale(1); border-color: rgba(255,255,255,.22); }
+.hero h1 .accent-line { margin-left: 16vw; color: var(--white); }
+.marquee, .page-cta { background: #181a1f; }
+.page-cta i, .statement-foot a span, .contact-link i { color: var(--red); }
+.statement { background: var(--white); color: #16171a; }
+.stage-one, .art-light { background: radial-gradient(circle at 64% 18%, rgba(255,255,255,.9), transparent 2.5%), radial-gradient(ellipse at 64% 20%, rgba(160,165,172,.25), transparent 30%), linear-gradient(145deg,#282a2f,#07080a 72%); }
+.work-index { align-items: start; }
+.work-index .work-item:only-child { grid-column: 1 / -1; max-width: 1040px; }
+.about-capabilities-label { margin-top: 90px; }
+.films-copy { max-width: 520px; color: var(--mist); font-size: 16px; line-height: 1.65; margin: -30px 0 0 50%; }
+.films-index { padding-top: 40px; }
+.art-crossroads, .crossroads-hero { background: #0a0b0d; }
+.crossroads-lines { position: absolute; inset: 0; background: conic-gradient(from 0deg at 50% 55%, transparent 0 8%, rgba(254,20,19,.55) 8.2% 8.5%, transparent 8.7% 28%, rgba(255,255,255,.18) 28.2% 28.45%, transparent 28.7% 53%, rgba(255,255,255,.12) 53.2% 53.5%, transparent 53.7% 77%, rgba(254,20,19,.4) 77.2% 77.5%, transparent 77.7%); }
+.crossroads-lines::after { content:"403"; position:absolute; left:50%; top:55%; transform:translate(-50%,-50%); color:var(--white); font:600 clamp(4rem,10vw,10rem)/1 var(--font-display); letter-spacing:-.09em; }
+.crossroads-hero { min-height: 100svh; padding: 150px 3vw 45px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden; }
+.hero-lines { opacity:.65; }
+.crossroads-hero > p, .crossroads-hero > h1, .film-meta { position:relative; z-index:2; }
+.crossroads-hero > p { text-transform:uppercase; letter-spacing:.18em; font-size:10px; color:var(--mist); }
+.crossroads-hero h1 { margin:auto 0 50px; text-transform:uppercase; font:500 clamp(5rem,13vw,13rem)/.72 var(--font-display); letter-spacing:-.085em; }
+.crossroads-hero h1 small { display:block; color:var(--mist); font-size:.28em; letter-spacing:.08em; margin:25px 0 0 45%; }
+.film-meta { display:flex; justify-content:space-between; border-top:1px solid rgba(255,255,255,.25); padding-top:18px; text-transform:uppercase; letter-spacing:.16em; font-size:9px; color:var(--mist); }
+.film-story { padding:130px 3vw; background:var(--white); color:#151619; display:grid; grid-template-columns:1fr 2fr; gap:40px; }
+.film-story h2 { margin:0; font:500 clamp(3.5rem,8vw,9rem)/.85 var(--font-display); letter-spacing:-.07em; }
+.film-story p { grid-column:2; max-width:540px; font-size:17px; line-height:1.65; }
+.film-credits { padding:110px 3vw; }
+.film-credits > div:not(.section-label) { display:grid; grid-template-columns:1fr 2fr; padding:21px 0; border-top:1px solid rgba(255,255,255,.2); }
+.film-credits span { color:var(--mist); font-size:12px; }
+.film-credits strong { font-weight:400; }
+@media(max-width:760px){.films-copy{margin:20px 0 0}.crossroads-hero{padding-left:20px;padding-right:20px}.crossroads-hero h1 small{margin-left:0}.film-story{grid-template-columns:1fr;padding:90px 20px}.film-story p{grid-column:1}.film-credits{padding:80px 20px}.film-credits>div:not(.section-label){grid-template-columns:1fr;gap:10px}}

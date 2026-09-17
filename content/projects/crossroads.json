@@ -1,0 +1,22 @@
+{
+  "title": "Giao Điểm",
+  "subtitle": "Crossroads",
+  "slug": "crossroads",
+  "year": 2026,
+  "category": "Narrative Film",
+  "client": null,
+  "location": "Vietnam",
+  "tagline": "5 CON ĐƯỜNG. MỘT LỰA CHỌN.",
+  "description": null,
+  "coverImage": null,
+  "thumbnail": null,
+  "heroVideo": null,
+  "gallery": [],
+  "credits": [
+    { "role": "Production", "name": "403 Productions" },
+    { "role": "Director / Cinematography / Camera / Editing / Music", "name": "Minh Lăng" },
+    { "role": "Screenplay", "name": "Nguyễn Xuân Tiến" }
+  ],
+  "bts": [],
+  "featured": true
+}
