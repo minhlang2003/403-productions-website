@@ -38,7 +38,9 @@ export function FooterCameraField() {
       particles = Array.from({length: count}, (_, index) => {
         const x = random(index + 1) * width
         const y = random(index + 42) * height
-        return {x, y, ox:x, oy:y, vx:0, vy:0, size:2.6 + random(index + 88) * 4.5, drift:.16 + random(index + 123) * .42, phase:random(index + 211) * Math.PI * 2, accent:random(index + 390) > .92}
+        const phase = random(index + 211) * Math.PI * 2
+        const speed = .06 + random(index + 347) * .18
+        return {x, y, ox:x, oy:y, vx:Math.cos(phase) * speed, vy:Math.sin(phase) * speed, size:2.6 + random(index + 88) * 4.5, drift:.16 + random(index + 123) * .42, phase, accent:random(index + 390) > .92}
       })
     }
 
@@ -79,17 +81,24 @@ export function FooterCameraField() {
         const dx = particle.x - pointer.x
         const dy = particle.y - pointer.y
         const distance = Math.hypot(dx, dy)
-        if (pointer.active && distance < 150) {
-          const force = (1 - distance / 150) * 1.9
+        if (pointer.active && distance < 175) {
+          // A broad, low-force field makes the cameras ease away from the cursor.
+          const force = (1 - distance / 175) * .48
           particle.vx += (dx / Math.max(distance, 1)) * force
           particle.vy += (dy / Math.max(distance, 1)) * force
         }
-        particle.vx += (particle.ox - particle.x) * .006
-        particle.vy += (particle.oy - particle.y) * .006
-        particle.vx *= .91
-        particle.vy *= .91
+        // Cameras keep their own momentum instead of returning to fixed anchors.
+        particle.vx += Math.cos(time / 3800 + particle.phase) * .0018
+        particle.vy += Math.sin(time / 4400 + particle.phase * 1.7) * .0018
+        particle.vx *= .996
+        particle.vy *= .996
         particle.x += particle.vx
         particle.y += particle.vy
+        const edge = particle.size * 3
+        if (particle.x < -edge) particle.x = width + edge
+        if (particle.x > width + edge) particle.x = -edge
+        if (particle.y < -edge) particle.y = height + edge
+        if (particle.y > height + edge) particle.y = -edge
         drawCamera(particle, time / 1000)
       }
       frame = requestAnimationFrame(animate)
