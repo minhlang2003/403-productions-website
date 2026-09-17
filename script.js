@@ -4,6 +4,33 @@ const mobileMenu = document.querySelector('.mobile-menu');
 const cursor = document.querySelector('.cursor');
 const cursorLabel = cursor?.querySelector('span');
 
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const motionLayer = document.createElement('div');
+motionLayer.className = 'motion-layer is-entering';
+motionLayer.setAttribute('aria-hidden', 'true');
+motionLayer.innerHTML = `
+  <span class="transition-line line-a"></span>
+  <span class="transition-line line-b"></span>
+  <span class="transition-line line-c"></span>
+  <span class="transition-line line-d"></span>
+  <strong>403</strong>
+`;
+document.body.appendChild(motionLayer);
+
+const scrollProgress = document.createElement('div');
+scrollProgress.className = 'scroll-progress';
+scrollProgress.setAttribute('aria-hidden', 'true');
+scrollProgress.innerHTML = '<i></i>';
+document.body.appendChild(scrollProgress);
+
+if (reducedMotion) {
+  motionLayer.remove();
+} else {
+  requestAnimationFrame(() => motionLayer.classList.add('enter-complete'));
+  window.setTimeout(() => motionLayer.classList.remove('is-entering', 'enter-complete'), 1450);
+}
+
 const translations = {
   'About us': 'Giới thiệu',
   'About': 'Giới thiệu',
@@ -222,6 +249,9 @@ document.querySelectorAll('.lang-toggle').forEach((button) => {
 
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+  scrollProgress.style.setProperty('--scroll-progress', progress);
 }, { passive: true });
 
 menuButton?.addEventListener('click', () => {
@@ -256,6 +286,21 @@ if (window.matchMedia('(pointer: fine)').matches && cursor) {
   });
 }
 
+if (!reducedMotion) {
+  document.querySelectorAll('a[href]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') return;
+      const destination = new URL(link.href, window.location.href);
+      if (destination.origin !== window.location.origin) return;
+      event.preventDefault();
+      motionLayer.classList.remove('enter-complete');
+      motionLayer.classList.add('is-leaving');
+      window.setTimeout(() => { window.location.href = destination.href; }, 720);
+    });
+  });
+}
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -266,6 +311,45 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
 
 document.querySelectorAll('.project, .service, .statement-lead').forEach((element) => observer.observe(element));
+
+document.querySelectorAll('.work-item, .belief-row, .film-credits > div:not(.section-label), .contact-details > div').forEach((element, index) => {
+  element.classList.add('motion-reveal');
+  element.style.setProperty('--reveal-delay', `${Math.min(index, 5) * 70}ms`);
+  observer.observe(element);
+});
+
+if (!reducedMotion && window.matchMedia('(pointer: fine)').matches) {
+  const parallaxTargets = document.querySelectorAll('.film-frame, .crossroads-lines, .studio-frame');
+  window.addEventListener('pointermove', (event) => {
+    const x = event.clientX / window.innerWidth - 0.5;
+    const y = event.clientY / window.innerHeight - 0.5;
+    parallaxTargets.forEach((element, index) => {
+      const strength = index % 2 ? 15 : 24;
+      element.style.setProperty('--parallax-x', `${x * strength}px`);
+      element.style.setProperty('--parallax-y', `${y * strength}px`);
+    });
+  }, { passive: true });
+
+  document.querySelectorAll('.project-media, .work-art').forEach((media) => {
+    media.addEventListener('pointermove', (event) => {
+      const rect = media.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      media.style.setProperty('--tilt-x', `${y * -4}deg`);
+      media.style.setProperty('--tilt-y', `${x * 5}deg`);
+      media.style.setProperty('--light-x', `${(x + 0.5) * 100}%`);
+      media.style.setProperty('--light-y', `${(y + 0.5) * 100}%`);
+    });
+    media.addEventListener('pointerleave', () => {
+      media.style.setProperty('--tilt-x', '0deg');
+      media.style.setProperty('--tilt-y', '0deg');
+    });
+  });
+}
+
+document.querySelectorAll('h1, .statement-lead, .page-cta a').forEach((heading) => {
+  heading.classList.add('kinetic-heading');
+});
 
 document.querySelectorAll('.magnetic').forEach((element) => {
   element.addEventListener('mousemove', (event) => {
