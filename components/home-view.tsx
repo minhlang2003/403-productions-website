@@ -10,6 +10,7 @@ type Language = 'vi' | 'en'
 
 export function HomeView({content}: {content: SiteContent}) {
   const [language, setLanguage] = useState<Language>('vi')
+  const [menuOpen, setMenuOpen] = useState(false)
   const project = content.featuredProjects[0]
 
   useEffect(() => {
@@ -24,7 +25,12 @@ export function HomeView({content}: {content: SiteContent}) {
         {content.navigation.map(item => <Link key={item.href} href={item.href}>{item.label[language]}</Link>)}
         <button className="lang-toggle" type="button" onClick={() => setLanguage(language === 'vi' ? 'en' : 'vi')} aria-label={language === 'vi' ? 'Switch to English' : 'Chuyển sang tiếng Việt'}>{language === 'vi' ? 'EN' : 'VI'}</button>
       </nav>
+      <button className="menu-button" type="button" aria-label={menuOpen ? (language === 'vi' ? 'Đóng menu' : 'Close menu') : (language === 'vi' ? 'Mở menu' : 'Open menu')} aria-expanded={menuOpen} onClick={() => setMenuOpen(open => !open)}><span/><span/><span/></button>
     </header>
+    <div className={`mobile-menu ${menuOpen ? 'open' : ''}`} aria-hidden={!menuOpen}>
+      {content.navigation.map(item => <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label[language]}</Link>)}
+      <button className="lang-toggle mobile-lang" type="button" onClick={() => setLanguage(language === 'vi' ? 'en' : 'vi')}>{language === 'vi' ? 'EN' : 'VI'}</button>
+    </div>
 
     <main>
       <section className="hero next-hero">
