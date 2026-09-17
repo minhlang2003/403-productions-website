@@ -3,3 +3,32 @@
 .next-hero h1 { max-width: 1100px; }
 .next-hero .hero-footer { grid-template-columns: 1fr 1fr; }
 .preserve-lines { white-space: pre-line; }
+
+.hero-copy .reveal { animation-name: revealUp; }
+.hero-copy h1.reveal { animation-delay: .18s; }
+.hero-index, .hero-footer { animation: cinematicFade 1s .45s cubic-bezier(.16,1,.3,1) both; }
+.hero-footer { animation-delay: .6s; }
+.nav { animation: navDrop .85s .3s cubic-bezier(.16,1,.3,1) both; }
+.work-heading h2, .services-grid > h2 { transition: letter-spacing .8s cubic-bezier(.16,1,.3,1); }
+.work-heading:hover h2, .services-grid:hover > h2 { letter-spacing: -.035em; }
+
+@keyframes cinematicFade { from { opacity:0; transform:translateY(24px); filter:blur(8px); } to { opacity:1; transform:none; filter:none; } }
+@keyframes navDrop { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:none; } }
+
+/* GPU-only route curtain: the route swaps while the viewport is fully covered. */
+.motion-layer { contain:strict; transform:translateZ(0); }
+.motion-layer::before { opacity:1; transform:scaleY(0); transform-origin:bottom; will-change:transform; transition:none; }
+.motion-layer.is-leaving::before { opacity:1; animation:curtainCover .46s cubic-bezier(.76,0,.24,1) both; }
+.motion-layer.is-entering::before { opacity:1; animation:curtainReveal .72s cubic-bezier(.76,0,.24,1) both; }
+.motion-layer.is-leaving strong { animation:markIn .42s cubic-bezier(.16,1,.3,1) both; transition:none; }
+.motion-layer.is-entering strong { animation:markOut .55s .08s cubic-bezier(.16,1,.3,1) both; transition:none; }
+.motion-layer.is-leaving .transition-line { animation:sliceIn .44s cubic-bezier(.76,0,.24,1) both; }
+.motion-layer.is-entering .transition-line { animation:sliceOut .58s .06s cubic-bezier(.76,0,.24,1) both; }
+.motion-layer .line-c,.motion-layer .line-d { display:none; }
+
+@keyframes curtainCover { from{transform:scaleY(0)} to{transform:scaleY(1)} }
+@keyframes curtainReveal { from{transform:scaleY(1);transform-origin:top} to{transform:scaleY(0);transform-origin:top} }
+@keyframes markIn { from{opacity:0;transform:translate(-50%,-45%) scale(.88)} to{opacity:1;transform:translate(-50%,-50%) scale(1)} }
+@keyframes markOut { from{opacity:1;transform:translate(-50%,-50%) scale(1)} to{opacity:0;transform:translate(-50%,-56%) scale(1.06)} }
+@keyframes sliceIn { from{opacity:0;scale:.2 1} to{opacity:.65;scale:1 1} }
+@keyframes sliceOut { from{opacity:.65;scale:1 1} to{opacity:0;scale:.25 1} }

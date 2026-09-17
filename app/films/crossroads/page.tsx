@@ -1,0 +1,1 @@
+import {InnerPageView} from '@/components/inner-page-view';import {getSiteContent} from '@/lib/content/get-site-content';export default async function Page(){return <InnerPageView content={await getSiteContent()} page="filmDetail"/>}

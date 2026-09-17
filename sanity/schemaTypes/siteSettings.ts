@@ -1,9 +1,18 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
-export const siteSettings = defineType({name:'siteSettings',title:'Website settings',type:'document',fields:[
-  defineField({name:'brand',type:'string'}),defineField({name:'brandDescriptor',type:'string'}),defineField({name:'navMeta',type:'localizedString'}),defineField({name:'tagline',type:'localizedString'}),defineField({name:'supportingLine',type:'localizedString'}),defineField({name:'positioning',type:'localizedString'}),
-  defineField({name:'navigation',type:'array',of:[defineArrayMember({type:'object',fields:[defineField({name:'label',type:'localizedString'}),defineField({name:'href',type:'string'})]})]}),
-  defineField({name:'home',title:'Homepage labels',type:'object',fields:[defineField({name:'productionHouse',type:'localizedString'}),defineField({name:'viewProjects',type:'localizedString'}),defineField({name:'aboutLink',type:'localizedString'}),defineField({name:'featuredLabel',type:'localizedString'}),defineField({name:'featuredHeading',type:'localizedString'}),defineField({name:'capabilitiesLabel',type:'localizedString'}),defineField({name:'capabilitiesHeading',type:'localizedString'})]}),
-  defineField({name:'about',type:'object',fields:[defineField({name:'label',type:'localizedString'}),defineField({name:'statement',type:'localizedString'}),defineField({name:'footnote',type:'localizedString'})]}),
-  defineField({name:'services',type:'array',of:[defineArrayMember({type:'object',fields:[defineField({name:'title',type:'localizedString'}),defineField({name:'description',type:'localizedString'})]})]}),
-  defineField({name:'contact',type:'object',fields:[defineField({name:'eyebrow',type:'localizedString'}),defineField({name:'heading',type:'localizedString'}),defineField({name:'email',type:'string'})]}),
+import {defineArrayMember,defineField,defineType} from 'sanity'
+const localized=(name:string,title?:string)=>defineField({name,title,type:'localizedString'})
+const localizedList=(name:string)=>defineField({name,type:'array',of:[defineArrayMember({type:'localizedString'})]})
+export const siteSettings=defineType({name:'siteSettings',title:'Website settings',type:'document',fields:[
+  defineField({name:'brand',type:'string'}),defineField({name:'brandDescriptor',type:'string'}),localized('navMeta'),localized('tagline'),localized('supportingLine'),localized('positioning'),
+  defineField({name:'navigation',type:'array',of:[defineArrayMember({type:'object',fields:[localized('label'),defineField({name:'href',type:'string'})]})]}),
+  defineField({name:'home',title:'Homepage',type:'object',fields:[localized('productionHouse'),localized('viewProjects'),localized('aboutLink'),localized('featuredLabel'),localized('featuredHeading'),localized('capabilitiesLabel'),localized('capabilitiesHeading')]}),
+  defineField({name:'about',title:'Homepage introduction',type:'object',fields:[localized('label'),localized('statement'),localized('footnote')]}),
+  defineField({name:'services',type:'array',of:[defineArrayMember({type:'object',fields:[localized('title'),localized('description')]})]}),
+  defineField({name:'contact',title:'Global contact',type:'object',fields:[localized('eyebrow'),localized('heading'),defineField({name:'email',type:'string'})]}),
+  defineField({name:'pages',title:'Inner pages',type:'object',fields:[
+    defineField({name:'work',title:'Work page',type:'object',fields:[localized('meta'),localized('kicker'),localized('heading'),localizedList('filters'),localized('nextLabel'),localized('nextLink')]}),
+    defineField({name:'films',title:'Films page',type:'object',fields:[localized('meta'),localized('kicker'),localized('subKicker'),localized('heading'),localized('intro'),localized('projectGenre'),localized('ctaLabel'),localized('ctaLink')]}),
+    defineField({name:'about',title:'About page',type:'object',fields:[localized('meta'),localized('kicker'),localized('heading'),localized('heroCopy'),localized('established'),localized('viewpointLabel'),localized('viewpointHeading'),localizedList('paragraphs'),localized('teamLabel'),defineField({name:'team',type:'array',of:[defineArrayMember({type:'object',fields:[defineField({name:'name',type:'string'}),localized('role')]})]}),localized('capabilitiesLabel'),localized('nextLabel'),localized('nextLink')]}),
+    defineField({name:'contact',title:'Contact page',type:'object',fields:[localized('meta'),localized('availability'),localized('heading'),localized('businessLabel'),localized('locationLabel'),localized('location'),localized('enquiriesLabel'),localized('enquiries'),localized('socialLabel'),defineField({name:'social',type:'text'}),localized('copyright')]}),
+    defineField({name:'filmDetail',title:'Film detail page',type:'object',fields:[localized('meta'),localized('byline'),localized('genre'),localized('location'),localized('filmLabel'),localized('creditsLabel'),defineField({name:'credits',type:'array',of:[defineArrayMember({type:'object',fields:[localized('role'),defineField({name:'name',type:'string'})]})]}),localized('ctaLabel'),localized('ctaLink')]}),
+  ]}),
 ]})

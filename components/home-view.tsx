@@ -26,9 +26,9 @@ export function HomeView({content}: {content: SiteContent}) {
 
     <main>
       <section className="hero next-hero">
-        <div className="hero-visual"><div className="film-frame" /></div>
+        <div className="hero-visual" aria-hidden="true"><div className="orb orb-a"/><div className="orb orb-b"/><div className="film-frame"/><div className="scanline"/></div>
         <div className="hero-index">{content.home.productionHouse[language]}</div>
-        <div className="hero-copy"><p className="eyebrow">{content.supportingLine[language]}</p><h1>{content.tagline[language]}</h1></div>
+        <div className="hero-copy"><p className="eyebrow reveal">{content.supportingLine[language]}</p><h1 className="reveal">{content.tagline[language]}</h1></div>
         <div className="hero-footer"><Link className="play-reel" href="/work"><span className="play-icon">↓</span>{content.home.viewProjects[language]}</Link><p>{content.positioning[language]}</p></div>
       </section>
 
@@ -40,7 +40,7 @@ export function HomeView({content}: {content: SiteContent}) {
 
       {project && <section className="work">
         <div className="work-heading"><div className="section-label">02 / {content.home.featuredLabel[language]}</div><h2>{content.home.featuredHeading[language]}</h2></div>
-        <article className="project project-one"><Link href={`/films/${project.slug}`}><div className="project-media"><div className="project-stage stage-one"><span className="spotlight"/><span className="silhouette"/></div></div><div className="project-info"><h3>{project.title} / {project.subtitle}</h3><p>{project.category[language]} · {project.year}</p></div></Link></article>
+        <article className="project project-one"><Link href={`/films/${project.slug}`} data-cursor="VIEW"><div className="project-media"><div className="project-stage stage-one"><span className="spotlight"/><span className="silhouette"/></div></div><div className="project-info"><h3>{project.title} / {project.subtitle}</h3><p>{project.category[language]} · {project.year}</p></div></Link></article>
       </section>}
 
       <section className="services">
