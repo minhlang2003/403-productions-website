@@ -4,6 +4,7 @@ import Link from 'next/link'
 import {useEffect, useState} from 'react'
 import type {SiteContent} from '@/lib/content/types'
 import {SiteFooter} from '@/components/site-footer'
+import {TeamSlideshow} from '@/components/team-slideshow'
 
 type Language = 'vi' | 'en'
 
@@ -48,6 +49,8 @@ export function HomeView({content}: {content: SiteContent}) {
         <div className="section-label">03 / {content.home.capabilitiesLabel[language]}</div>
         <div className="services-grid"><h2 className="preserve-lines">{content.home.capabilitiesHeading[language]}</h2><div className="service-list">{content.services.map((service,index)=><div className="service" key={service.title.en}><span>0{index+1}</span><h3>{service.title[language]}</h3><p>{service.description[language]}</p></div>)}</div></div>
       </section>
+
+      <TeamSlideshow content={content.teamShowcase} language={language}/>
 
       <section className="contact">
         <div className="section-label">04 / {content.contact.eyebrow[language]}</div>

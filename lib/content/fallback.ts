@@ -45,6 +45,16 @@ export const fallbackContent: SiteContent = {
     copyright: {vi: '© 2026 403 PRODUCTIONS. BẢO LƯU MỌI QUYỀN.', en: '© 2026 403 PRODUCTIONS. ALL RIGHTS RESERVED.'},
     topLabel: {vi: 'Lên đầu trang', en: 'Back to top'},
   },
+  teamShowcase: {
+    label: {vi: 'Con người của 403', en: 'The people of 403'},
+    heading: {vi: 'Gặp gỡ đội ngũ đứng sau khung hình.', en: 'Meet the people behind the frame.'},
+    members: [
+      {name: 'MINH', role: {vi: 'Đạo diễn sáng tạo', en: 'Creative Director'}, image: '/images/403-team-contact-sheet.png', position: '12%'},
+      {name: 'AN', role: {vi: 'Nhà sản xuất', en: 'Producer'}, image: '/images/403-team-contact-sheet.png', position: '38%'},
+      {name: 'HÀ', role: {vi: 'Đạo diễn hình ảnh', en: 'Director of Photography'}, image: '/images/403-team-contact-sheet.png', position: '63%'},
+      {name: 'KHANG', role: {vi: 'Giám đốc nghệ thuật', en: 'Art Director'}, image: '/images/403-team-contact-sheet.png', position: '88%'},
+    ],
+  },
   pages: {
     work:{meta:{vi:'DỰ ÁN TIÊU BIỂU / 02',en:'SELECTED WORK / 02'},kicker:{vi:'Dự án tuyển chọn',en:'Selected projects'},heading:{vi:'Những tác phẩm còn đọng lại.',en:'Work that stays with you.'},filters:[{vi:'Tất cả',en:'All'},{vi:'Phim truyện',en:'Narrative Film'},{vi:'Quảng cáo',en:'Commercial'},{vi:'Music Video',en:'Music Video'},{vi:'Nhiếp ảnh',en:'Photography'}],nextLabel:{vi:'Tiếp theo / Phim',en:'Next / Films'},nextLink:{vi:'403 Films',en:'403 Films'}},
     films:{meta:{vi:'PHIM NGUYÊN BẢN / 02',en:'ORIGINAL FILMS / 02'},kicker:{vi:'403 Films',en:'403 Films'},subKicker:{vi:'Tác phẩm nguyên bản',en:'Original IP'},heading:{vi:'Những câu chuyện nguyên bản của 403.',en:'Original stories by 403.'},intro:{vi:'Nơi phát triển phim truyện và tác phẩm nguyên bản của 403 Productions.',en:'A home for narrative films and original intellectual property developed by 403 Productions.'},projectGenre:{vi:'Tâm lý / Hành động',en:'Psychological / Action'},ctaLabel:{vi:'Phim nổi bật',en:'Featured film'},ctaLink:{vi:'Đi vào Giao Điểm',en:'Enter Crossroads'}},

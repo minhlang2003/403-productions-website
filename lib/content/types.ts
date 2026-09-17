@@ -8,6 +8,11 @@ export type FooterContent = {
   copyright: Localized
   topLabel: Localized
 }
+export type TeamShowcase = {
+  label: Localized
+  heading: Localized
+  members: Array<{name: string; role: Localized; image: string; position?: string}>
+}
 export type Project = {title: string; subtitle?: string; slug: string; year: number; category: Localized; tagline?: Localized; featured: boolean}
 export type SiteContent = {
   brand: string
@@ -30,6 +35,7 @@ export type SiteContent = {
   services: Array<{title: Localized; description: Localized}>
   contact: {eyebrow: Localized; heading: Localized; email: string}
   footer: FooterContent
+  teamShowcase: TeamShowcase
   pages: {
     work: {meta:Localized;kicker:Localized;heading:Localized;filters:Localized[];nextLabel:Localized;nextLink:Localized}
     films: {meta:Localized;kicker:Localized;subKicker:Localized;heading:Localized;intro:Localized;projectGenre:Localized;ctaLabel:Localized;ctaLink:Localized}
