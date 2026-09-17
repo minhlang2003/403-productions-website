@@ -7,5 +7,21 @@ const query = `*[_type == "siteSettings"][0]{brand,brandDescriptor,navMeta,tagli
 export async function getSiteContent(): Promise<SiteContent> {
   if (!client) return fallbackContent
   const content = await client.fetch<SiteContent | null>(query, {}, {next: {revalidate: 60}})
-  return content || fallbackContent
+  return content ? mergeContent(fallbackContent, content) : fallbackContent
+}
+
+function mergeContent<T>(fallback: T, override: Partial<T>): T {
+  if (Array.isArray(fallback)) return (Array.isArray(override) && override.length ? override : fallback) as T
+  if (fallback && typeof fallback === 'object') {
+    const output = {...fallback as object} as Record<string, unknown>
+    for (const [key, value] of Object.entries(override)) {
+      if (value === undefined || value === null) continue
+      const base = output[key]
+      output[key] = base && typeof base === 'object' && !Array.isArray(base) && typeof value === 'object' && !Array.isArray(value)
+        ? mergeContent(base, value)
+        : value
+    }
+    return output as T
+  }
+  return (override ?? fallback) as T
 }
