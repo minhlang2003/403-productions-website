@@ -14,7 +14,10 @@ const mimeTypes = {
 createServer((request, response) => {
   const requestPath = decodeURIComponent(request.url?.split("?")[0] || "/");
   const relativePath = requestPath === "/" ? "index.html" : requestPath.replace(/^\/+/, "");
-  const filePath = normalize(join(root, relativePath));
+  let filePath = normalize(join(root, relativePath));
+  if (!existsSync(filePath) && !extname(filePath) && existsSync(`${filePath}.html`)) {
+    filePath = `${filePath}.html`;
+  }
 
   if (!filePath.startsWith(root) || !existsSync(filePath)) {
     response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });

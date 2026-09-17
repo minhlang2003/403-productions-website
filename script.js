@@ -62,3 +62,14 @@ document.querySelectorAll('.magnetic').forEach((element) => {
     element.style.transform = '';
   });
 });
+
+const localTime = document.querySelector('#local-time');
+if (localTime) {
+  const updateTime = () => {
+    localTime.textContent = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Ho_Chi_Minh', hour: '2-digit', minute: '2-digit', hour12: false
+    }).format(new Date()) + ' · GMT +7';
+  };
+  updateTime();
+  window.setInterval(updateTime, 30000);
+}
